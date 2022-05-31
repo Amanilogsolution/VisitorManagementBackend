@@ -6,6 +6,7 @@ const DieselController = require('../controller/DieselMaster')
 const VisiterController = require('../controller/VisiterMaster')
 const LoginController = require('../controller/LoginMaster')
 const WarehouseController = require('../controller/WarehouseMaster')
+const EmployeeController = require('../controller/Employdetails')
 
 
 router.post('/generatorentry',GeneratorController.GeneratorEntry)
@@ -18,6 +19,6 @@ router.post('/warehouseclose',WarehouseController.Warehouseclose)
 router.get('/warehouseLastclose',WarehouseController.WarehouseLastclose)
 
 
-router.post('/allemployee',VisiterController.Allemployee)
+router.post('/allemployee',EmployeeController.Allemployee)
 
 module.exports= router
