@@ -15,7 +15,7 @@ const VisiterEntry = async (req, res) => {
         await sql.connect(sqlConfig)
         const result = await sql.query(`insert into tbl_visitor_entry (entry_no,visitor_name,company_name,email_id,no_of_visitor,meeting_with,
             contact_no,remark,warehouse,entry_by,entry_date,msgflag)
-            values ('BOM 9','${visitor_name}','${company_name}','${email_id}',${no_of_visitor},'${meeting_with}',${contact_no},'${remark}','${wharehouse}','${entry_by}',getDate(),
+            values ('','${visitor_name}','${company_name}','${email_id}',${no_of_visitor},'${meeting_with}',${contact_no},'${remark}','${wharehouse}','${entry_by}',getDate(),
             '1');`)
         res.send(result)
     }

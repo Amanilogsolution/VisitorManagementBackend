@@ -19,6 +19,7 @@ router.post('/warehouseclose',WarehouseController.Warehouseclose)
 router.get('/warehouseLastclose',WarehouseController.WarehouseLastclose)
 
 
+router.post('/employeeDetails',EmployeeController.EmployeeAlerts)
 router.post('/allemployee',EmployeeController.Allemployee)
 
 module.exports= router
