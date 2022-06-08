@@ -1,9 +1,12 @@
 const express = require('express');
 const app = express();
-const port = 8004
 const sql = require('mssql')
 const router = require('./router/router');
 const bodyParser = require('body-parser')
+const dotenv = require('dotenv');
+dotenv.config();
+const port = 8004;
+
 const cors = require('cors')
 
 app.use(cors())
