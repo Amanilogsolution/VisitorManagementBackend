@@ -56,9 +56,12 @@ const Warehouseclose = async (req, res) => {
 }
 
 const WarehouseLastclose = async (req, res) => {
+    const Warehouse = req.body.Warehouse;
+    console.log(Warehouse)
     try {
         await sql.connect(sqlConfig)
-        const result = await sql.query(`select top 1 * from tbl_warehouselogs order by sno desc`)       
+        const result = await sql.query(`select top 1 * from tbl_warehouselogs where warehouse_id='${Warehouse}' order by sno desc `)   
+        console.log(result)    
         res.send(result.recordset[0].date)
     }
     catch (err) {

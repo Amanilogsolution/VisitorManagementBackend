@@ -11,6 +11,7 @@ const VisiterEntry = async (req, res) => {
     const meeting_with = req.body.meeting_with;
     const contact_no = req.body.contact_no;
     const remark = req.body.remark;
+    
     try{
         await sql.connect(sqlConfig)
         const result = await sql.query(`insert into tbl_visitor_entry (entry_no,visitor_name,company_name,email_id,no_of_visitor,meeting_with,

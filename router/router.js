@@ -16,7 +16,7 @@ router.post('/loginuser',LoginController.UserLogin)
 router.post('/warehousecheckopen',WarehouseController.Warehousecheckopen)
 router.post('/warehouseopen',WarehouseController.Warehouseopen)
 router.post('/warehouseclose',WarehouseController.Warehouseclose)
-router.get('/warehouseLastclose',WarehouseController.WarehouseLastclose)
+router.post('/warehouseLastclose',WarehouseController.WarehouseLastclose)
 
 
 router.post('/employeeDetails',EmployeeController.EmployeeAlerts)
