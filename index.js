@@ -5,7 +5,7 @@ const router = require('./router/router');
 const bodyParser = require('body-parser')
 const dotenv = require('dotenv');
 dotenv.config();
-const port = 8004;
+const port = process.env.PORT;
 
 const cors = require('cors')
 
