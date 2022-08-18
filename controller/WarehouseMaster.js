@@ -23,12 +23,15 @@ const Warehouseopen = async (req, res) => {
     const awl_person_open = req.body.awl_person_open;
     const remarks = req.body.remarks?req.body.remarks:'';
     const warehouse_id= req.body.warehouse_id;
+    const uploadimage = req.body.uploadimage;
+    console.log(uploadimage)
+
     try {
         await sql.connect(sqlConfig)
         const result = await sql.query(`insert into tbl_warehouselogs (entry_by,entry_date,
-            warehouse,date,opening_time ,opened_by ,awl_person_open ,remarks ,msg_flag,warehouse_id)
+            warehouse,date,opening_time ,opened_by ,awl_person_open ,remarks ,msg_flag,warehouse_id,open_wh_image)
             values('${entry_by}',getDate(),'${wharehouse}','${date}','${opening_time}',
-            '${opened_by}','${awl_person_open}','${remarks}','open','${warehouse_id}')`)
+            '${opened_by}','${awl_person_open}','${remarks}','open','${warehouse_id}','${uploadimage}')`)
         res.send("success")
     }
     catch (err) {
@@ -42,10 +45,12 @@ const Warehouseclose = async (req, res) => {
     const closed_by = req.body.closed_by;
     const awl_person_close = req.body.awl_person_close;
     const wharehouse = req.body.wharehouse;
+    const uploadimage = req.body.uploadimage;
+    console.log(uploadimage)
     try {
         await sql.connect(sqlConfig)
         const result = await sql.query(`update tbl_warehouselogs set closing_time='${closing_time}',
-        closed_by='${closed_by}',awl_person_close='${awl_person_close}',msg_flag='close' 
+        closed_by='${closed_by}',awl_person_close='${awl_person_close}',msg_flag='close',close_wh_image='${uploadimage}' 
         WHERE warehouse_id='${wharehouse}' and msg_flag='open' and date='${date}'`)
             
         res.send(result)

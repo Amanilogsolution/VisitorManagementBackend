@@ -19,8 +19,7 @@ const DieselEntry = async (req, res) => {
         await sql.connect(sqlConfig)
         const result = await sql.query(`insert into tbl_diesellogs (entry_by ,entry_date ,warehouse,date,invoice_no,
             party_name,qtyin_liter,rate_per_liter,person_name,out_time,in_time,msgflag,invvalue)
-            values('${entry_by}',getDate(),'${warehouse}','${DATE}','${invoice_no}','${party_name}',${qtyin_liter},${rate_per_liter},'${person_name}','${out_time}','${in_time}','1',${TotalAmount})
-            `)
+            values('${entry_by}',getDate(),'${warehouse}','${DATE}','${invoice_no}','${party_name}',${qtyin_liter},${rate_per_liter},'${person_name}','${out_time}','${in_time}','1',${TotalAmount})`)
         res.send(result)
     }
     catch(err){

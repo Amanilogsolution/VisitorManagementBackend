@@ -1,7 +1,5 @@
 const sql =require('mssql')
 const sqlConfig = require('../config.js')
-const jwt = require("jsonwebtoken")
-
 
 const UserLogin = async (req, res) => {
     const uid_id = req.body.uid_id;
