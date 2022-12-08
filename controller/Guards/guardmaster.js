@@ -6,12 +6,13 @@ async function InsertGuard (req,res) {
     const Guardname = req.body.Guardname;
     const Guardid = req.body.Guardid;
     const Phoneno = req.body.Phoneno;
-    const vendorid = req.body.vendorid;a
+    const vendorid = req.body.vendorid;
     const vendorname = req.body.vendorname;
     const Guardjoiningdate= req.body.Guardjoiningdate;
     const LocationName = req.body.LocationName;
     const DateOfBirth = req.body.DateOfBirth;
     const Shift = req.body.Shift;
+    console.log(Location,Guardname,Guardid,Phoneno,vendorid,vendorname,Guardjoiningdate,LocationName,DateOfBirth,Shift)
 
     try {
         const pool = new sql.ConnectionPool(sqlConfig);
