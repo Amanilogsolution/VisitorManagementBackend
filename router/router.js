@@ -10,6 +10,9 @@ const EmployeeController = require('../controller/Employdetails')
 const VehicleController = require('../controller/VehicleEntry')
 const FileUpload = require('../controller/FileUpload')
 const Multer = require('../Middleware/multer')
+const GuardMasterController = require('../controller/Guards/guardmaster')
+const GuardsLogsController = require('../controller/Guards/GuardsLogs')
+const VendorController = require('../controller/Vendor/Vendor')
 
 
 
@@ -30,5 +33,16 @@ router.post('/vehicleentry',VehicleController.VehicleEntry)
 
 router.post('/FileUpload',Multer,FileUpload)
 
+router.post('/insertguard',GuardMasterController.InsertGuard)
+router.post('/totalguard',GuardMasterController.TotalGuards)
+router.post('/deactiveguards',GuardMasterController.DeactiveGuards)
+router.post('/activelocation',GuardMasterController.ActiveLocation)
+router.post('/getguardmasterlogout',GuardMasterController.GetguardmasterLogout)
+
+router.post('/insertGuardLogin',GuardsLogsController.InsertGuardLogin)
+router.post('/getguardmasterlogin',GuardsLogsController.GetguardmasterLogin)
+router.post('/updateguard',GuardsLogsController.UpdateGuard)
+
+router.post('/TotalVendor',VendorController.TotalVendor)
 
 module.exports= router
