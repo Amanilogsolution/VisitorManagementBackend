@@ -86,10 +86,11 @@ async function Updateguardmaster (req,res) {
 }
 
 async function GetguardmasterLogout (req,res){
+    const warehouse_id = req.body.warehouse_id;
     try{
         const pool = new sql.ConnectionPool(sqlConfig);
         await pool.connect();
-        const result = await pool.query(`select * from tbl_guardmaster where Status = 'Active' and Guard_status ='Logout' or Guard_status ='newjoin'`)
+        const result = await pool.query(`select * from tbl_guardmaster where Status = 'Active'  and (Guard_status ='Logout'  or Guard_status ='newjoin' ) and  Location ='${warehouse_id}'`)
         await pool.close() 
         res.send(result.recordset)
 
@@ -99,6 +100,7 @@ async function GetguardmasterLogout (req,res){
     }
 }
 async function GetguardmasterLogin (req,res){
+    
     try{
         const pool = new sql.ConnectionPool(sqlConfig);
         await pool.connect();

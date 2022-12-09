@@ -13,7 +13,7 @@ async function InsertGuardLogin (req,res) {
     console.log(Location,Guardname,date,time,status,guardid)
 
     try {
-        const pool = new sql.ConnectionPool(sqlConfig3);
+        const pool = new sql.ConnectionPool(sqlConfig);
         await pool.connect();
      const result = await pool.query(`insert into NEWAWLDB.dbo.tbl_guardlogs (Guardid,Logindate,LoginTime,EntryBy,whid,Entrydate,Status,guardname,locationname) 
      values('${guardid}','${date}','${time}','${userid}','${Location}',getdate(),'${status}','${Guardname}','${locationname}')`)
@@ -37,7 +37,7 @@ async function UpdateGuard (req,res) {
     const guardid = req.body.guardid;
     const userid = req.body.userid;
     try{
-        const pool = new sql.ConnectionPool(sqlConfig3);
+        const pool = new sql.ConnectionPool(sqlConfig);
         await pool.connect();
      const result = await pool.query(`update  NEWAWLDB.dbo.tbl_guardlogs set Logoutdate='${date}',Logouttime = '${time}',Status='${status}' where Guardid='${guardid}'`)
 
@@ -54,10 +54,12 @@ async function UpdateGuard (req,res) {
 }
 
 async function GetguardmasterLogin (req,res){
+    const warehouse_id = req.body.warehouse_id;
+
     try{
-        const pool = new sql.ConnectionPool(sqlConfig3);
+        const pool = new sql.ConnectionPool(sqlConfig);
         await pool.connect();
-        const result = await pool.query(`select *, convert(varchar(15),Logindate,23) as date from tbl_guardlogs where Status ='Login'`)
+        const result = await pool.query(`select *, convert(varchar(15),Logindate,23) as date from tbl_guardlogs where Status ='Login' and whid ='${warehouse_id}' `)
         await pool.close() 
         res.send(result.recordset)
 
