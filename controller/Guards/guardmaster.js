@@ -33,7 +33,7 @@ async function TotalGuards (req,res){
     try{
         const pool = new sql.ConnectionPool(sqlConfig);
         await pool.connect();
-        const result = await pool.query(`select * from NEWAWLDB.dbo.tbl_guardmaster`)
+        const result = await pool.query(`select * from NEWAWLDB.dbo.tbl_guardmaster order by Location `)
         await pool.close() 
         res.send(result.recordset)
     }
