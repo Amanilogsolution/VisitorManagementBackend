@@ -13,9 +13,8 @@ const Multer = require('../Middleware/multer')
 const GuardMasterController = require('../controller/Guards/guardmaster')
 const GuardsLogsController = require('../controller/Guards/GuardsLogs')
 const VendorController = require('../controller/Vendor/Vendor')
-
-
-
+const GuardHistoryController = require('../controller/Guards/GuardHistory')
+ 
 
 router.post('/generatorentry',GeneratorController.GeneratorEntry)
 router.post('/dieselentry',DieselController.DieselEntry)
@@ -44,5 +43,9 @@ router.post('/getguardmasterlogin',GuardsLogsController.GetguardmasterLogin)
 router.post('/updateguard',GuardsLogsController.UpdateGuard)
 
 router.post('/TotalVendor',VendorController.TotalVendor)
+
+router.post('/totalguardshistory',GuardHistoryController.TotalGuardsHistory)
+
+
 
 module.exports= router

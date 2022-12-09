@@ -1,0 +1,21 @@
+const sqlConfig = require('../../config');
+const sql = require("mssql")
+
+async function TotalGuardsHistory (req,res){
+    const startDate = req.body.startDate;
+    const endDate = req.body.endDate;
+    console.log(startDate, endDate)
+
+    try{
+        const pool = new sql.ConnectionPool(sqlConfig);
+        await pool.connect();
+        const result = await pool.query(`select *,convert(varchar(15),logindate,105)  as LoginDate,convert(varchar,LoginTime,8)  as timeLogin,convert(varchar(15),Logoutdate,105)  as LogOutDate,convert(varchar,Logouttime,8)  as timeLoginout  from NEWAWLDB.dbo.tbl_guardlogs where  convert(date,logindate) between '${startDate}' and '${endDate}' `)
+        await pool.close() 
+        res.send(result.recordset)
+    }
+    catch (err){
+        console.log(err)
+    }
+}
+
+module.exports={TotalGuardsHistory}
