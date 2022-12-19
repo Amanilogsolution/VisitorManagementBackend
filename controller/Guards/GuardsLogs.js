@@ -1,7 +1,7 @@
 const sqlConfig = require('../../config');
 const sql = require("mssql")
 
-async function InsertGuardLogin (req,res) {
+async function InsertGuardLogin(req, res) {
     const Location = req.body.Location;
     const Guardname = req.body.Guardname;
     const date = req.body.date;
@@ -9,26 +9,27 @@ async function InsertGuardLogin (req,res) {
     const status = req.body.status;
     const guardid = req.body.guardid;
     const userid = req.body.userid;
-    const locationname = req.body.locationname
-    console.log(Location,Guardname,date,time,status,guardid)
+    const locationname = req.body.locationname;
+    
+    console.log(Location, Guardname, date, time, status, guardid)
 
     try {
         const pool = new sql.ConnectionPool(sqlConfig);
         await pool.connect();
-     const result = await pool.query(`insert into NEWAWLDB.dbo.tbl_guardlogs (Guardid,Logindate,LoginTime,EntryBy,whid,Entrydate,Status,guardname,locationname) 
+        const result = await pool.query(`insert into NEWAWLDB.dbo.tbl_guardlogs (Guardid,Logindate,LoginTime,EntryBy,whid,Entrydate,Status,guardname,locationname) 
      values('${guardid}','${date}','${time}','${userid}','${Location}',getdate(),'${status}','${Guardname}','${locationname}')`)
 
-     const updateStatus = await pool.query(`update NEWAWLDB.dbo.tbl_guardmaster set Guard_status='${status}' where Guardid = '${guardid}'`)
-      await pool.close()  
-      console.log(result) 
-      res.send('Added')
-  }
-  catch (err) {
-    console.log(err)
-  }
+        const updateStatus = await pool.query(`update NEWAWLDB.dbo.tbl_guardmaster set Guard_status='${status}' where Guardid = '${guardid}'`)
+        await pool.close()
+        console.log(result)
+        res.send('Added')
+    }
+    catch (err) {
+        console.log(err)
+    }
 }
 
-async function UpdateGuard (req,res) {
+async function UpdateGuard(req, res) {
     const Location = req.body.Location;
     const Guardname = req.body.Guardname;
     const date = req.body.date;
@@ -36,39 +37,39 @@ async function UpdateGuard (req,res) {
     const status = req.body.status;
     const guardid = req.body.guardid;
     const userid = req.body.userid;
-    try{
+    try {
         const pool = new sql.ConnectionPool(sqlConfig);
         await pool.connect();
-     const result = await pool.query(`update  NEWAWLDB.dbo.tbl_guardlogs set Logoutdate='${date}',Logouttime = '${time}',Status='${status}' where Guardid='${guardid}'`)
+        const result = await pool.query(`update  NEWAWLDB.dbo.tbl_guardlogs set Logoutdate='${date}',Logouttime = '${time}',Status='${status}' where Guardid='${guardid}'`)
 
-     const updateStatus = await pool.query(`update NEWAWLDB.dbo.tbl_guardmaster set Guard_status='${status}' where Guardid = '${guardid}'`)
-      await pool.close()  
-      console.log(result) 
-      res.send('Updated')
+        const updateStatus = await pool.query(`update NEWAWLDB.dbo.tbl_guardmaster set Guard_status='${status}' where Guardid = '${guardid}'`)
+        await pool.close()
+        console.log(result)
+        res.send('Updated')
 
     }
-    catch (err){
+    catch (err) {
         console.log(err)
     }
 
 }
 
-async function GetguardmasterLogin (req,res){
+async function GetguardmasterLogin(req, res) {
     const warehouse_id = req.body.warehouse_id;
 
-    try{
+    try {
         const pool = new sql.ConnectionPool(sqlConfig);
         await pool.connect();
         const result = await pool.query(`select *, convert(varchar(15),Logindate,23) as date from tbl_guardlogs where Status ='Login' and whid ='${warehouse_id}' `)
-        await pool.close() 
+        await pool.close()
         res.send(result.recordset)
 
     }
-    catch (err){
+    catch (err) {
         console.log(err)
     }
 }
 
 // async function
 
-module.exports={InsertGuardLogin,GetguardmasterLogin,UpdateGuard}
+module.exports = { InsertGuardLogin, GetguardmasterLogin, UpdateGuard }

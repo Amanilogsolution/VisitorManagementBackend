@@ -41,6 +41,20 @@ async function TotalGuards (req,res){
         console.log(err)
     }
 }
+async function SelectedGuards (req,res){
+    const sno = req.body.sno;
+
+    try{
+        const pool = new sql.ConnectionPool(sqlConfig);
+        await pool.connect();
+        const result = await pool.query(`select *,convert(varchar(15),Guardjoiningdate,121) as Joindate,convert(varchar(15),DateOfBirth,121) as dateofbirth from NEWAWLDB.dbo.tbl_guardmaster where ID = '${sno}'`)
+        await pool.close() 
+        res.send(result.recordset)
+    }
+    catch (err){
+        console.log(err)
+    }
+}
 
 async function DeactiveGuards (req,res){
     const sno = req.body.sno;
@@ -114,4 +128,25 @@ async function GetguardmasterLogin (req,res){
     }
 }
 
-  module.exports={InsertGuard,TotalGuards,DeactiveGuards,ActiveLocation,Updateguardmaster,GetguardmasterLogout,GetguardmasterLogin}
+const updateGuard = async (req,res) =>{
+
+    const sno = req.body.sno;
+    const Guardname = req.body.Guardname;
+    const Phoneno = req.body.Phoneno;
+    const Guardjoiningdate= req.body.Guardjoiningdate;
+    const DateOfBirth = req.body.DateOfBirth;
+    const Shift = req.body.Shift;
+    console.log(sno,Guardname,Phoneno,Guardjoiningdate,DateOfBirth,Shift)
+   
+    try{
+        await sql.connect(sqlConfig)
+        const result = await sql.query(`update tbl_guardmaster set Guardname='${Guardname}',Phoneno='${Phoneno}'
+        ,Guardjoiningdate ='${Guardjoiningdate}',DateOfBirth='${DateOfBirth}',Shift='${Shift}' where ID = ${sno}`)
+        res.status(200).send("Updated")
+    }
+    catch(err){
+        res.send(err)
+    }
+}
+
+  module.exports={InsertGuard,TotalGuards,DeactiveGuards,ActiveLocation,Updateguardmaster,GetguardmasterLogout,GetguardmasterLogin,SelectedGuards,updateGuard}

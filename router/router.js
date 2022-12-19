@@ -33,6 +33,10 @@ router.post('/vehicleentry',VehicleController.VehicleEntry)
 router.post('/FileUpload',Multer,FileUpload)
 
 router.post('/insertguard',GuardMasterController.InsertGuard)
+router.post('/SelectedGuards',GuardMasterController.SelectedGuards)
+router.post('/updateGuard',GuardMasterController.updateGuard)
+
+
 router.post('/totalguard',GuardMasterController.TotalGuards)
 router.post('/deactiveguards',GuardMasterController.DeactiveGuards)
 router.post('/activelocation',GuardMasterController.ActiveLocation)
