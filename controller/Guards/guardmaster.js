@@ -128,7 +128,7 @@ async function GetguardmasterLogin (req,res){
     }
 }
 
-const updateGuard = async (req,res) =>{
+const updateGuardDetails = async (req,res) =>{
 
     const sno = req.body.sno;
     const Guardname = req.body.Guardname;
@@ -149,4 +149,4 @@ const updateGuard = async (req,res) =>{
     }
 }
 
-  module.exports={InsertGuard,TotalGuards,DeactiveGuards,ActiveLocation,Updateguardmaster,GetguardmasterLogout,GetguardmasterLogin,SelectedGuards,updateGuard}
+  module.exports={InsertGuard,TotalGuards,DeactiveGuards,ActiveLocation,Updateguardmaster,GetguardmasterLogout,GetguardmasterLogin,SelectedGuards,updateGuardDetails}

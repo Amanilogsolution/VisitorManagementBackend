@@ -34,7 +34,7 @@ router.post('/FileUpload',Multer,FileUpload)
 
 router.post('/insertguard',GuardMasterController.InsertGuard)
 router.post('/SelectedGuards',GuardMasterController.SelectedGuards)
-router.post('/updateGuard',GuardMasterController.updateGuard)
+router.post('/updateGuardDetails',GuardMasterController.updateGuardDetails)
 
 
 router.post('/totalguard',GuardMasterController.TotalGuards)
