@@ -10,7 +10,7 @@ const UserLogin = async (req, res) => {
         await sql.connect(sqlConfig)
         const result = await sql.query(`select * from Visitor_login where  uid_id='${uid_id}' and uid_pass='${uid_pass}'`)
         console.log(result.recordset[0])
-
+         // details Change
         // const token = jwt.sign({ uid_id, uid_pass }, '08be12b1193279994c8278770b3e6776d9ddc2c7d013f6d60713309ae6e3d12377739ba6db6852434ac905e85ccdf215b1229186f96692fdb2b1d68cd572d429', { expiresIn: 5 * 24 * 60 * 60 })
         // console.log(token)
         res.status(200).send({
