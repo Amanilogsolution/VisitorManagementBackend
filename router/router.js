@@ -14,6 +14,7 @@ const GuardMasterController = require('../controller/Guards/guardmaster')
 const GuardsLogsController = require('../controller/Guards/GuardsLogs')
 const VendorController = require('../controller/Vendor/Vendor')
 const GuardHistoryController = require('../controller/Guards/GuardHistory')
+const VehicleMasterController = require('../controller/VehicleMaster')
  
 
 router.post('/generatorentry',GeneratorController.GeneratorEntry)
@@ -49,6 +50,16 @@ router.post('/updateguard',GuardsLogsController.UpdateGuard)
 router.post('/TotalVendor',VendorController.TotalVendor)
 
 router.post('/totalguardshistory',GuardHistoryController.TotalGuardsHistory)
+router.post('/dedicatedvehicle',VehicleMasterController.DedicatedVehicle)
+router.post('/dedicatedvehiclestatus',VehicleMasterController.DedicatedVehicleStatus)
+router.post('/insertdedicatedVEhicle',VehicleMasterController.InsertDedicatedVEhicle)
+router.post('/dedicatedvehicleoutstatus',VehicleMasterController.DedicatedVehicleOutStatus)
+router.post('/updatededicatedVEhicle',VehicleMasterController.UpdateDedicatedVEhicle)
+
+
+
+
+
 
 
 
